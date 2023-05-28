@@ -1,0 +1,84 @@
+fixture:
+  source: |
+    store TestStore {
+      Schema -> {
+        Id          -> ID
+        StringField -> String
+        IntField    -> Int
+        BoolField   -> Bool
+      }
+    }
+  tokens:
+    - token: TOKEN_KEYWORD
+      value: "store"
+
+    - token: TOKEN_IDENTIFIER
+      value: "TestStore"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Schema"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Id"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_IDENTIFIER
+      value: "ID"
+
+    - token: TOKEN_IDENTIFIER
+      value: "StringField"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_IDENTIFIER
+      value: "String"
+
+    - token: TOKEN_IDENTIFIER
+      value: "IntField"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Int"
+
+    - token: TOKEN_IDENTIFIER
+      value: "BoolField"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Bool"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_EOF
+      value: "EOF"
+  ast:
+    components:
+      store:
+        TestStore:
+          fields:
+            Schema:
+              Id: ID
+              StringField: String
+              IntField: Int
+              BoolField: Bool
+          components: null

@@ -1,0 +1,29 @@
+version: '3'
+
+tasks:
+  clean:
+    desc: Deletes all build and test artifacts
+    cmds:
+      - rm -rf ./build
+  
+  test:
+    desc: Runs the entire unit test suite of the project
+    sources:
+      - cmd/**/*.go
+      - internal/**/*.go
+      - internal/**/*.yml
+      - pkg/**/*.go
+    preconditions:
+      - mkdir -p ./build
+      - mkdir -p ./build/coverage
+    cmds:
+      - clear
+      - go test -coverprofile ./build/coverage/covprof -coverpkg=./... ./...
+      - go tool cover -o ./build/coverage/report.html -html=./build/coverage/covprof
+
+  build:
+    desc: Builds the artifact
+    preconditions:
+      - mkdir -p ./build
+    cmds:
+      - CGO_ENABLED=0 GOOS=linux go build -o ./build/nebuloom ./cmd/nebuloom

@@ -1,0 +1,81 @@
+// My Customer Database
+store CustomerStore {
+    id        -> $.ID
+    firstname -> string
+}
+
+// My Account Database
+store AccountStore {
+    id   -> $.ID
+    name -> string
+}
+
+// My Customer Microservice
+service CustomerService {
+
+    endpoint /customers {
+
+        type CreateCustomerDTO {
+            firstname -> string
+        }
+
+        method GET -> {
+            path -> "/"
+            run -> CustomerStore.FindAll
+        }
+
+        method POST -> {
+            path -> "/"
+            consumes -> CreateCustomerDTO
+            run -> CustomerStore.CreateRecord {
+                data -> this.body
+            }
+        }
+
+        method GET -> {
+            path -> "/${id}"
+            run -> CustomerStore.FindById {
+                id -> $.path.id
+            }
+        }
+
+        method PATCH -> {
+            path -> "/${id}"
+            run -> CustomerStore.UpdateRecord {
+                id -> $.path.id
+                date -> $.body
+            }
+        }
+
+        method DELETE -> {
+            path -> "/${id}"
+            run -> CustomerStore.DeleteRecord {
+                id -> $.path.id
+            }
+        }
+
+    }
+
+    // The equivalent to the endpoint above
+    resource /accounts {
+        store -> AccountStore
+        operations -> {
+            findAll -> true
+            findById -> true
+            update -> true
+            delete -> true
+        }
+    }
+
+}
+
+// My Function
+function MyFunction {
+    when -> CustomerStore.RecordIsCreated
+
+    run -> AccountStore.CreateRecord {
+        data -> {
+            name -> "New Account"
+        }
+    }
+}

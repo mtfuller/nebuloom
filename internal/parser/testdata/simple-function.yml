@@ -1,0 +1,84 @@
+fixture:
+  source: |
+    function MyFunction {
+        When -> CustomerStore.RecordIsCreated
+
+        Run -> AccountStore.CreateRecord {
+            Data -> {
+                Name -> "New Account"
+            }
+        }
+    }
+  tokens:
+    - token: TOKEN_KEYWORD
+      value: "function"
+
+    - token: TOKEN_IDENTIFIER
+      value: "MyFunction"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "When"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_IDENTIFIER
+      value: "CustomerStore.RecordIsCreated"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Run"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_IDENTIFIER
+      value: "AccountStore.CreateRecord"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Data"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Name"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_STRING
+      value: "\"New Account\""
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_EOF
+      value: "EOF"
+  ast:
+    components:
+      function:
+        MyFunction:
+          fields:
+            When: CustomerStore.RecordIsCreated
+            Run: 
+              type: $METHOD
+              ref: AccountStore.CreateRecord
+              args:
+                Data:
+                  Name: "\"New Account\""
+          components: null

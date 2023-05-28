@@ -1,0 +1,36 @@
+fixture:
+  source: |
+    component MyComponent {
+      Field1 -> 123
+    }
+  tokens:
+    - token: TOKEN_KEYWORD
+      value: "component"
+
+    - token: TOKEN_IDENTIFIER
+      value: "MyComponent"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Field1"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_INTEGER
+      value: "123"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_EOF
+      value: "EOF"
+  ast:
+    components:
+      component: 
+        MyComponent:
+          fields:
+            Field1: 123
+          components: null

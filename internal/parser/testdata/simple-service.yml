@@ -1,0 +1,101 @@
+fixture:
+  source: |
+    service CustomerService {
+
+      endpoint Customers {
+        Path -> "/customers"
+
+        method GET {
+            Path -> "/"
+            Run -> CustomerStore.FindAll
+        }
+      }
+
+    }
+  tokens:
+    - token: TOKEN_KEYWORD
+      value: "service"
+
+    - token: TOKEN_IDENTIFIER
+      value: "CustomerService"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_KEYWORD
+      value: "endpoint"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Customers"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Path"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_STRING
+      value: "\"/customers\""
+
+    - token: TOKEN_KEYWORD
+      value: "method"
+
+    - token: TOKEN_IDENTIFIER
+      value: "GET"
+
+    - token: TOKEN_LCURLY
+      value: "{"
+
+    - token: TOKEN_IDENTIFIER
+      value: "Path"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_STRING
+      value: "\"/\""
+
+    - token: TOKEN_IDENTIFIER
+      value: "Run"
+
+    - token: TOKEN_ASSIGN
+      value: "->"
+
+    - token: TOKEN_IDENTIFIER
+      value: "CustomerStore.FindAll"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_RCURLY
+      value: "}"
+
+    - token: TOKEN_EOF
+      value: "EOF"
+  ast:
+    components:
+      service:
+        CustomerService:
+          fields: null
+          components:
+            endpoint:
+              Customers:
+                fields:
+                  Path: "\"/customers\""
+                components:
+                  method:
+                    GET:
+                      fields:
+                        Path: "\"/\""
+                        Run: CustomerStore.FindAll
+                      components: null
+
+
+
+
